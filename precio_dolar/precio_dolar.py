@@ -1,18 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from tabla_tkinter import hacer_app
-
-
-# def arhivo_txt(name,c,v,website,more_info,fecha):
-#     with open(f'posts/{name}.txt', 'w') as f:
-#             f.write(f'Tipo de dolar: {name}\n')
-#             f.write(f'{c}\n')
-#             f.write(f'{v}\n')
-#             f.write(f'Mas Info: {website+more_info}\n\n')
-#             f.write(fecha)
-#     print(f'Archivo guardado: {name}')
-
-
+#defino e inicializo las tablas que me serviran mas adelante, aunque creo que pueden ir adentro de la funcion valor_dolar
 lista_datos=[]
 lista_general=[]
 
@@ -35,22 +24,19 @@ def valor_dolar():
         compra = dolar.find('div', class_ = 'compra').text.strip('Compra')  #obtengo el valor de compra de cada dolar
         venta = dolar.find('div', class_ = 'venta').text.strip('Venta') #obtengo el valor de venta de cada dolar
         more_info = dolar.a['href'] #obtengo el link de cada titulo.
-        # arhivo_txt(dolar_name,compra,venta,website,more_info,fecha)
-        
-        lista_datos = []
-        lista_datos.append(dolar_name)
+          
+        lista_datos = [] #inicializo la tabla por cada bucle
+        lista_datos.append(dolar_name)#Por cada tipo de dolar obtenido, armo una lista y voy agregando el tipo de dolar; el preio de compra y el precio de venta
         lista_datos.append(compra)
         lista_datos.append(venta)
-        lista_datos.append(more_info)
-        lista_general.append(lista_datos)
-        
-        # modifico la base de datos, segun los nuevos valores que voy obteniendo
-        # guardar_db(dolar_name,compra,venta,fecha)
+        lista_general.append(lista_datos) #A cada tabla creada recien la guardo en esta tabla asi tengo una tabla de tablas donde en la funcion hacer_app me es mas facil recorrer los datos de esta manera
 
     
-    hacer_app(lista_general, fecha)    
+    hacer_app(lista_general, fecha) #le paso los argumentos que requiere mi funcion para armar la pestaña emergente
       
 valor_dolar()
+
+#si quiero que mi programa se ejecute cada cierto tiempo utilizo el codigo de debajo, en este caso es cada 6 horas.
 # if __name__ == '__main__':
 #   while True:
     # valor_dolar()
