@@ -1,8 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
-from tabla_tkinter import hacer_app
+from tabla_tkinter import make_app
 #defino e inicializo las tablas que me serviran mas adelante, aunque creo que pueden ir adentro de la funcion valor_dolar
-lista_datos=[]
 lista_general=[]
 
 def valor_dolar():
@@ -29,10 +28,10 @@ def valor_dolar():
         lista_datos.append(dolar_name)#Por cada tipo de dolar obtenido, armo una lista y voy agregando el tipo de dolar; el preio de compra y el precio de venta
         lista_datos.append(compra)
         lista_datos.append(venta)
-        lista_general.append(lista_datos) #A cada tabla creada recien la guardo en esta tabla asi tengo una tabla de tablas donde en la funcion hacer_app me es mas facil recorrer los datos de esta manera
+        lista_general.append(lista_datos) #A cada tabla creada recien la guardo en esta tabla asi tengo una tabla de tablas donde en la funcion make_app me es mas facil recorrer los datos de esta manera
 
     
-    hacer_app(lista_general, fecha) #le paso los argumentos que requiere mi funcion para armar la pestaña emergente
+    make_app(lista_general, fecha) #le paso los argumentos que requiere mi funcion para armar la pestaña emergente
       
 valor_dolar()
 
