@@ -17,7 +17,7 @@ class DollarScraper:
         dolares = box.find_all('div', class_='tile is-child')
         
         for dollar in dolares:
-            dollar_type = dollar.find('a', class_='title').text
+            dollar_type = dollar.find('a', class_='titleText').text
             
             try: 
                 buy = dollar.find('div', class_='compra').find('div', class_='val').text
